@@ -34,7 +34,9 @@ public class anamenu {
     JLabel lb12 = new JLabel();
     JLabel lb13 = new JLabel();
     JLabel lb14 = new JLabel();
-
+    JLabel lb15 = new JLabel();
+    JLabel lb16 = new JLabel();
+    JLabel lb17 = new JLabel();
     ImageIcon icon = new ImageIcon(Main.class.getResource("/tikk.png"));
     JMenuBar bar = new JMenuBar();
     JMenu m = new JMenu("Yiyecekler");
@@ -51,6 +53,7 @@ public class anamenu {
     JMenuItem i9 = new JMenuItem("Su");
     JMenuItem i10 = new JMenuItem("Limonata");
     String buttons[] = {"Evet" , "Hayır"};
+
     JPopupMenu p = new JPopupMenu();
     JMenuItem item = new JMenuItem("Geri");
 
@@ -67,7 +70,7 @@ public class anamenu {
         ImageIcon img = new ImageIcon((Main.class.getResource("/tabakk.png")));
         lb8.setIcon(new ImageIcon(img.getImage()));
 
-        j.getContentPane().setBackground(new Color(255,255,204));
+        j.getContentPane().setBackground(new Color(210,220,250));
 
 
         String[] listModel = new String[5];
@@ -145,7 +148,7 @@ public class anamenu {
         lb4.setBounds(200, 290,250,50);
         lb4.setFont(lb4.getFont().deriveFont(Font.TRUETYPE_FONT));
 
-        JButton btn3 = new JButton("Sepete ekle");
+        JButton btn3 = new JButton("Sepeti sıfırla");
         btn3.setBackground(new Color(204,0,0));
         btn3.setForeground(Color.white);
         btn3.setFont(btn3.getFont().deriveFont(Font.BOLD));
@@ -157,20 +160,74 @@ public class anamenu {
         JLabel lb7 = new JLabel();
         lb7.setBounds(320,400,250,100);
         lb7.setForeground(new Color(0,111,0));
-        String a = buttons[0];
+
+        btn3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btn3.setFocusable(false);
+
+                list.clearSelection();
+                list2.clearSelection();
+                list3.clearSelection();
+              if(list.isSelectionEmpty() == true){
+                  lb5.setVisible(false);
+
+                  lb12.setVisible(false);
+                  btn6.setVisible(false);
+                  ps.setVisible(false);
+                  btn4.setVisible(false);
+                  lb6.setVisible(false);
+                  lb15.setVisible(false);
+                  lb16.setVisible(false);
+              }
+                if(list2.isSelectionEmpty() == true){
+                    lb5.setVisible(false);
+                    lb12.setVisible(false);
+                    btn6.setVisible(false);
+                    ps.setVisible(false);
+                    btn4.setVisible(false);
+                    lb6.setVisible(false);
+                    lb15.setVisible(false);
+                    lb16.setVisible(false);
+                }
+                if(list3.isSelectionEmpty() == true){
+                    lb5.setVisible(false);
+                    lb12.setVisible(false);
+                    btn6.setVisible(false);
+                    ps.setVisible(false);
+                    btn4.setVisible(false);
+                    lb6.setVisible(false);
+                    lb15.setVisible(false);
+                    lb16.setVisible(false);
+
+                }
+
+            }
+        });
 
 
 
-        lb11.setBounds(490,360,120,40);
+
+        lb11.setBounds(495,370,120,40);
         lb11.setFont(new Font(null,Font.CENTER_BASELINE,16));
         lb11.setText("   SEPETİM");
         lb11.setBorder(BorderFactory.createLineBorder(Color.RED , 4,true));
-        lb12.setBounds(495,410,190,20);
+        lb12.setBounds(495,420,190,20);
         lb12.setFont(new Font("Display" ,Font.CENTER_BASELINE, 14));
         lb13.setBounds(495,440 ,190,20);
         lb13.setFont(new Font("Display" ,Font.CENTER_BASELINE, 14));
         lb14.setBounds(495,470,190,20);
         lb14.setFont(new Font("Display" ,Font.CENTER_BASELINE, 14));
+        lb15.setBounds(495,445,190,20);
+        lb15.setFont(new Font("Display" ,Font.CENTER_BASELINE, 14));
+        lb16.setBounds(495,470,190,20);
+        lb16.setFont(new Font("Display" ,Font.CENTER_BASELINE, 14));
+        lb17.setBounds(495,500,200,20);
+        lb17.setFont(new Font("Display" ,Font.BOLD, 14));
+        lb17.setVisible(false);
+
+
+
         btn6.setBounds(490,550,130,30);
         btn6.setBorder(BorderFactory.createLineBorder(Color.BLACK , 3,true));
         btn6.setForeground(Color.WHITE);
@@ -183,16 +240,14 @@ public class anamenu {
 
                 ps.setVisible(true);
                 btn4.setVisible(true);
+                lb6.setVisible(true);
                 String text4 = "Ödeme için 4 haneli şifrenizi giriniz.";
                 lb6.setText(text4);
 
 
+
             }
         });
-
-
-
-
 
 
 
@@ -201,54 +256,245 @@ public class anamenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(list.getSelectedIndex() == 0 ){
-                JOptionPane.showOptionDialog(j,"Pizza 50 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
-                 {
+                  int    x =JOptionPane.showOptionDialog(j,"Pizza 50 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
+                if(x == JOptionPane.YES_OPTION){
+                    String text6 = "Pizza ---> 50 TL ";
+                    lb12.setText(text6);
+                    String text3 = "";
+                    if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                    if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                    if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue() ;}
+                    text3 += " seçildi.";
+                    lb5.setText(text3);
+                    btn6.setVisible(true);
+                    lb5.setVisible(true);
+                    lb12.setVisible(true);
 
-                 }
-                }
 
+
+                }}
                 if(list.getSelectedIndex() == 1){
-                  JOptionPane.showOptionDialog(j,"Hamburger 60 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);}
+                    int    x =    JOptionPane.showOptionDialog(j,"Hamburger 60 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
+                    if(x == JOptionPane.YES_OPTION){
+                        String text6 = "Hamburger ---> 60 TL ";
+                        lb12.setText(text6);
+                        String text3 = ""  ;
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue() ;}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb12.setVisible(true);
+                        } }
                         if(list.getSelectedIndex() == 2){
-                            JOptionPane.showOptionDialog(j,"Döner 35 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);}
+                            int    x =   JOptionPane.showOptionDialog(j,"Döner 35 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
+                            if(x == JOptionPane.YES_OPTION){
+                                String text6 = "Döner ---> 35 TL ";
+                                lb12.setText(text6);
+                                String text3 = ""  ;
+                                if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                                if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                                if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                                text3 += " seçildi.";
+                                lb5.setText(text3);
+                                btn6.setVisible(true);
+                                lb5.setVisible(true);
+                                lb12.setVisible(true);
+                                } }
                 if(list.getSelectedIndex() == 3){
-                   JOptionPane.showOptionDialog(j,"Salata 25 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);}
-                if(list.getSelectedIndex() == 4){
-                  JOptionPane.showOptionDialog(j,"Mantı 40 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);}
 
-            }
-        });
+                    int    x =     JOptionPane.showOptionDialog(j,"Salata 25 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
+                    if(x == JOptionPane.YES_OPTION){
+                        String text6 = "Salata ---> 25 TL ";
+                        lb12.setText(text6);
+                        String text3 = ""  ;
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb12.setVisible(true);
+                        } }
+                if(list.getSelectedIndex() == 4){
+                    int    x =      JOptionPane.showOptionDialog(j,"Mantı 40 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
+                    if(x == JOptionPane.YES_OPTION){
+                        String text6 = "Mantı --->  40 TL ";
+                        lb12.setText(text6);
+                        String text3 = ""  ;
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue() ;}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb12.setVisible(true);
+                     } }}
+       });
 
         btn2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(list2.getSelectedIndex() == 0){
-                    JOptionPane.showOptionDialog(j,"Sprite 10 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
-                }
+                   int y =  JOptionPane.showOptionDialog(j,"Sprite 10 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                    if(y == JOptionPane.YES_OPTION){
+                        String text6 = "Sprite ---> 10 TL ";
+                        lb15.setText(text6);
+                        String text3 = "";
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb15.setVisible(true);
+                        } }
                 if(list2.getSelectedIndex() == 1){
-                    JOptionPane.showOptionDialog(j,"Çay  7 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");}
+                 int y =    JOptionPane.showOptionDialog(j,"Çay  7 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                    if(y == JOptionPane.YES_OPTION){
+                        String text6 = "Çay ---> 7 TL ";
+                        lb15.setText(text6);
+                        String text3 = "";
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb15.setVisible(true);
+                        } }
                 if(list2.getSelectedIndex() == 2){
-                    JOptionPane.showOptionDialog(j,"Su  4 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");}
+                 int y =    JOptionPane.showOptionDialog(j,"Su  4 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                    if(y == JOptionPane.YES_OPTION){
+                        String text6 = "Su ---> 4 TL ";
+                        lb15.setText(text6);
+                        String text3 = ""  ;
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb15.setVisible(true);
+                        } }
                 if(list2.getSelectedIndex() == 3){
-                    JOptionPane.showOptionDialog(j,"Ayran  5 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");}
+                int y =    JOptionPane.showOptionDialog(j,"Ayran  5 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                    if(y == JOptionPane.YES_OPTION){
+                        String text6 = "Ayran ---> 5 TL ";
+                        lb15.setText(text6);
+                        String text3 = ""  ;
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb15.setVisible(true);
+                        } }
                 if(list2.getSelectedIndex() == 4){
-                    JOptionPane.showOptionDialog(j,"Limonata 18 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");}
+              int y =      JOptionPane.showOptionDialog(j,"Limonata 18 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                    if(y == JOptionPane.YES_OPTION){
+                        String text6 = "Limonata ---> 18 TL ";
+                        lb15.setText(text6);
+                        String text3=  ""  ;
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb15.setVisible(true);
+                        } }
             }
         });
            btn5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(list3.getSelectedIndex() == 0){
-                    JOptionPane.showOptionDialog(j,"Baklava 12 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
-                }
+                  int z =  JOptionPane.showOptionDialog(j,"Baklava 12 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                    if(z == JOptionPane.YES_OPTION){
+                        String text6 = "Baklava ---> 12 TL ";
+                        lb16.setText(text6);
+                        String text3 = "" ;
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue() ;}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb16.setVisible(true);
+                        }    }
                 if(list3.getSelectedIndex() == 1){
-                    JOptionPane.showOptionDialog(j,"Künefe  50 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");}
+                int z =    JOptionPane.showOptionDialog(j,"Künefe  50 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                    if(z == JOptionPane.YES_OPTION){
+                        String text6 = "Künefe ---> 50 TL ";
+                        lb16.setText(text6);
+                        String text3 = ""  ;
+                        if(list.getSelectedValue() != null){
+                            text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb16.setVisible(true);
+                       } }
                 if(list3.getSelectedIndex() == 2){
-                    JOptionPane.showOptionDialog(j,"Dondurma 20 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");}
+                    int z =      JOptionPane.showOptionDialog(j,"Dondurma 20 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                    if(z == JOptionPane.YES_OPTION){
+                        String text6 = "Dondurma ---> 20 TL ";
+                        lb16.setText(text6);
+                        String text3 =""  ;
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb16.setVisible(true);
+                       } }
                 if(list3.getSelectedIndex() == 3){
-                    JOptionPane.showOptionDialog(j,"Cheesecake 40 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");}
+                    int z = JOptionPane.showOptionDialog(j,"Brownie 25 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                    if(z == JOptionPane.YES_OPTION){
+                        String text6 = "Brownie ---> 25 TL ";
+                        lb16.setText(text6);
+                        String text3 = ""  ;
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb16.setVisible(true);
+                     } }
                 if(list3.getSelectedIndex() == 4){
-                    JOptionPane.showOptionDialog(j,"Brownie 25 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");}
+                    int z =  JOptionPane.showOptionDialog(j,"Cheesecake 40 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                    if(z == JOptionPane.YES_OPTION){
+                        String text6 = "Cheesecake ---> 40 TL ";
+                        lb16.setText(text6);
+                        String text3 = ""  ;
+                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
+                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
+                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
+                        text3 += " seçildi.";
+                        lb5.setText(text3);
+                        btn6.setVisible(true);
+                        lb5.setVisible(true);
+                        lb16.setVisible(true);
+                       } }
             }
         });
 
@@ -293,71 +539,24 @@ public class anamenu {
         btn2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(list2.getSelectedIndex() != -1 ){
-                    if(list2.getSelectedIndex() == 0 ){
-                        String text6 = "Sprite ---> 10 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 1 ){
-                        String text6 = "Çay ---> 7 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 2 ){
-                        String text6 = "Su ---> 4 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 3 ){
-                        String text6 = "Ayran ---> 5 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 4 ){
-                        String text6 = "Limonata ---> 18 TL ";
-                        lb12.setText(text6);
-                    }
-                    String text3 = list2.getSelectedValue() +  " seçildi."  ;
+
                     lb5.setForeground(Color.red);
                     lb5.setFont(lb5.getFont().deriveFont(Font.BOLD));
-                    lb5.setText(text3);
-                    btn6.setVisible(true);
+
 
                 }
-            }
+
         });
         btn5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if(list3.getSelectedIndex() != -1 ){
-                    if(list3.getSelectedIndex() == 0 ){
-                        String text6 = "Baklava ---> 12 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list3.getSelectedIndex() == 1 ){
-                        String text6 = "Künefe ---> 50 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list3.getSelectedIndex() == 2 ){
-                        String text6 = "Dondurma ---> 20 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list3.getSelectedIndex() == 3 ){
-                        String text6 = "Cheesecake ---> 40 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list3.getSelectedIndex() == 4 ){
-                        String text6 = "Brownie ---> 25 TL ";
-                        lb12.setText(text6);
-                    }
-                    String text3 = list3.getSelectedValue() +  " seçildi."  ;
+
                     lb5.setForeground(Color.red);
                     lb5.setFont(lb5.getFont().deriveFont(Font.BOLD));
-                    lb5.setText(text3);
-
-
-                    btn6.setVisible(true);
-                }
             }
         });
+
 
 
 
@@ -371,256 +570,13 @@ public class anamenu {
 
 
                 if(list.getSelectedIndex() != -1   ){
-                    if(list.getSelectedIndex() == 0){
-                        String text6 = "Pizza ---> 50 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 1 ){
-                        String text6 = "Hamburger ---> 60 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 2 ){
-                        String text6 = "Döner ---> 35 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 3 ){
-                        String text6 = "Salata ---> 25 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 4 ){
-                        String text6 = "Mantı ---> 40 TL ";
-                        lb12.setText(text6);
-                    }
-                    String text3 = list.getSelectedValue() +  " seçildi."  ;
 
                     lb5.setForeground(Color.red);
                     lb5.setFont(lb5.getFont().deriveFont(Font.BOLD));
-                    lb5.setText(text3);
-                    btn6.setVisible(true);
+
+
 
                 }
-
-                if(list.getSelectedIndex() != -1 && list2.getSelectedIndex() != -1 ){
-                    if(list.getSelectedIndex() == 0 ){
-                        String text7 = "Pizza ---> 50 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list.getSelectedIndex() == 1 ){
-                        String text7 = "Hamburger ---> 60 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list.getSelectedIndex() == 2 ){
-                        String text7 = "Döner ---> 35 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list.getSelectedIndex() == 3 ){
-                        String text7 = "Salata ---> 25 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list.getSelectedIndex() == 4 ){
-                        String text7 = "Mantı ---> 40 TL ";
-                        lb13.setText(text7);
-                    }
-
-                    if(list2.getSelectedIndex() == 0 ){
-                        String text6 = "Sprite ---> 10 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 1 ){
-                        String text6 = "Çay ---> 7 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 2 ){
-                        String text6 = "Su ---> 4 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 3 ){
-                        String text6 = "Ayran ---> 5 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 4 ){
-                        String text6 = "Limonata ---> 18 TL ";
-                        lb12.setText(text6);
-                    }
-
-                    String text3 = list.getSelectedValue() + " ve " + list2.getSelectedValue() + " seçildi."  ;
-                    lb5.setForeground(Color.red);
-                    lb5.setFont(lb5.getFont().deriveFont(Font.BOLD));
-                    lb5.setText(text3);
-
-
-                    btn6.setVisible(true);
-                }
-                if(list2.getSelectedIndex() != -1 && list3.getSelectedIndex() != -1){
-                    if(list2.getSelectedIndex() == 0 ){
-                        String text6 = "Sprite ---> 10 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 1 ){
-                        String text6 = "Çay ---> 7 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 2 ){
-                        String text6 = "Su ---> 4 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 3 ){
-                        String text6 = "Ayran ---> 5 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list2.getSelectedIndex() == 4 ){
-                        String text6 = "Limonata ---> 18 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list3.getSelectedIndex() == 0 ){
-                        String text7 = "Baklava ---> 12 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 1 ){
-                        String text7 = "Künefe ---> 50 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 2 ){
-                        String text7 = "Dondurma ---> 20 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 3 ){
-                        String text7 = "Cheesecake ---> 40 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 4 ){
-                        String text7 = "Brownie ---> 25 TL ";
-                        lb13.setText(text7);
-                    }
-
-                    String text3 = list2.getSelectedValue() + " ve " + list3.getSelectedValue() + " seçildi."   ;
-                    lb5.setForeground(Color.red);
-                    lb5.setFont(lb5.getFont().deriveFont(Font.BOLD));
-                    lb5.setText(text3);
-                    btn6.setVisible(true);
-
-                }
-                if(list.getSelectedIndex() != -1 && list3.getSelectedIndex() != -1){
-                    if(list.getSelectedIndex() == 0 ){
-                        String text6 = "Pizza ---> 50 TL";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 1 ){
-                        String text6 = "Hamburger ---> 60 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 2 ){
-                        String text6 = "Döner ---> 35 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 3 ){
-                        String text6 = "Salata ---> 25 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 4 ){
-                        String text6 = "Mantı ---> 40 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list3.getSelectedIndex() == 0 ){
-                        String text7 = "Baklava ---> 12 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 1 ){
-                        String text7 = "Künefe ---> 50 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 2 ){
-                        String text7 = "Dondurma ---> 20 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 3 ){
-                        String text7 = "Cheesecake ---> 40 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 4 ){
-                        String text7 = "Brownie ---> 25 TL ";
-                        lb13.setText(text7);
-                    }
-                    String text3 = list.getSelectedValue() + " ve " + list3.getSelectedValue() + " seçildi."   ;
-                    lb5.setForeground(Color.red);
-                    lb5.setFont(lb5.getFont().deriveFont(Font.BOLD));
-                    lb5.setText(text3);
-
-
-                    btn6.setVisible(true);}
-                if(list.getSelectedIndex() != -1 && list2.getSelectedIndex() != -1 && list3.getSelectedIndex() != -1){
-                    if(list.getSelectedIndex() == 0 ){
-                        String text6 = "Pizza ---> 50 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 1 ){
-                        String text6 = "Hamburger ---> 60 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 2 ){
-                        String text6 = "Döner ---> 35 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 3 ){
-                        String text6 = "Salata ---> 25 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list.getSelectedIndex() == 4 ){
-                        String text6 = "Mantı ---> 40 TL ";
-                        lb12.setText(text6);
-                    }
-                    if(list3.getSelectedIndex() == 0 ){
-                        String text7 = "Baklava ---> 12 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 1 ){
-                        String text7 = "Künefe ---> 50 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 2 ){
-                        String text7 = "Dondurma ---> 20 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 3 ){
-                        String text7 = "Cheesecake ---> 40 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list3.getSelectedIndex() == 4 ){
-                        String text7 = "Brownie ---> 25 TL ";
-                        lb13.setText(text7);
-                    }
-                    if(list2.getSelectedIndex() == 0 ){
-                        String text8 = "Sprite ---> 10 TL ";
-                        lb14.setText(text8);
-                    }
-                    if(list2.getSelectedIndex() == 1 ){
-                        String text8 = "Çay ---> 7 TL ";
-                        lb14.setText(text8);
-                    }
-                    if(list2.getSelectedIndex() == 2 ){
-                        String text8 = "Su ---> 4 TL ";
-                        lb14.setText(text8);
-                    }
-                    if(list2.getSelectedIndex() == 3 ){
-                        String text8 = "Ayran ---> 5 TL ";
-                        lb14.setText(text8);
-                    }
-                    if(list2.getSelectedIndex() == 4 ){
-                        String text8 = "Limonata ---> 18 TL ";
-                        lb14.setText(text8);
-                    }
-
-
-                    String text3 = list.getSelectedValue() + " , " + list2.getSelectedValue() + " , " + list3.getSelectedValue() + " seçildi."   ;
-
-                    lb5.setForeground(Color.red);
-                    lb5.setFont(lb5.getFont().deriveFont(Font.BOLD));
-                    lb5.setText(text3);
-
-                    btn6.setVisible(true);}
-
-
-
             }});
 
 
@@ -744,8 +700,11 @@ public class anamenu {
         j.add(lb12);
         j.add(lb13);
         j.add(lb14);
+        j.add(lb15);
+        j.add(lb16);
         j.setLayout(null);
         j.setVisible(true);
+
 
 
     }
@@ -753,4 +712,3 @@ public class anamenu {
 
 
 }
-
