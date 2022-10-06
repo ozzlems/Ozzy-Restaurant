@@ -1,6 +1,6 @@
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Locale;
@@ -10,7 +10,9 @@ public class anamenu {
     JFrame j = new JFrame("Menü Sayfası");
     DefaultListModel<String> listModel = new DefaultListModel<>();
     JList<String> list = new JList<>(listModel);
-
+    public int totalPrice = 0;
+    int maxvalue = 0;
+    String userPassword;
     DefaultListModel<String> listModel1 = new DefaultListModel<>();
 
     JList<String> list2 = new JList<>(listModel1);
@@ -37,6 +39,10 @@ public class anamenu {
     JLabel lb15 = new JLabel();
     JLabel lb16 = new JLabel();
     JLabel lb17 = new JLabel();
+    JLabel lb18 = new JLabel();
+    JLabel lb19 = new JLabel();
+    JLabel lb20 = new JLabel();
+
     ImageIcon icon = new ImageIcon(Main.class.getResource("/tikk.png"));
     JMenuBar bar = new JMenuBar();
     JMenu m = new JMenu("Yiyecekler");
@@ -59,18 +65,19 @@ public class anamenu {
 
 
 
-    public anamenu(String userid){
+    public anamenu(String userid, String password){
         JFrame j = new JFrame("Menü Sayfası");
         JLabel lb9 = new JLabel("Hoşgeldin " + userid.substring(0,1).toUpperCase(Locale.ROOT) + userid.substring(1).toLowerCase(Locale.ROOT) + " !" );
         lb9.setFont(new Font(null,Font.LAYOUT_RIGHT_TO_LEFT,14));
         lb9.setForeground(new Color(0,0,0));
         lb9.setBounds(245,10,200,30);
         JLabel lb8 = new JLabel();
-        lb8.setBounds(600,60,249,246);
+        lb8.setBounds(600,30,249,246);
         ImageIcon img = new ImageIcon((Main.class.getResource("/tabakk.png")));
         lb8.setIcon(new ImageIcon(img.getImage()));
+        userPassword = password;
+        j.getContentPane().setBackground(new Color(225,215,210));
 
-        j.getContentPane().setBackground(new Color(210,220,250));
 
 
         String[] listModel = new String[5];
@@ -99,7 +106,11 @@ public class anamenu {
 
 
 
+
         JList<String> list = new JList<>(listModel);
+        list.setBorder(new LineBorder(Color.BLACK , 3, false));
+        list.setOpaque(true);
+
         list.setVisibleRowCount(5);
                 list2.setVisibleRowCount(5);
                 list3.setVisibleRowCount(5);
@@ -111,10 +122,12 @@ public class anamenu {
         list.setSelectionBackground(Color.lightGray);
         list.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
 
-        list.setBounds(80,100,90,100);
+        list.setBounds(80,100,95,110);
 
 
         JList<String> list2 = new JList<>(listModel1);
+        list2.setBorder(new LineBorder(Color.BLACK , 3, false));
+        list2.setOpaque(true);
         JLabel lb2 = new JLabel();
         list2.setSelectionForeground(Color.red);
         list2.setSelectionBackground(Color.lightGray);
@@ -122,18 +135,20 @@ public class anamenu {
         lb2.setText("İçecek Listesi");
         lb2.setForeground(new Color(204,0,0));
         lb2.setBounds(80,210,80,50);
-        list2.setBounds(80,250,90,100);
+        list2.setBounds(80,250,95,110);
         JButton btn = new JButton("Seçiniz ");
 
 
         JList<String> list3 = new JList<>(listModel2);
+        list3.setBorder(new LineBorder(Color.BLACK , 3, false));
+        list3.setOpaque(true);
         JLabel lb10 = new JLabel("Tatlı Listesi");
         list3.setSelectionForeground(Color.red);
         list3.setSelectionBackground(Color.lightGray);
         list3.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
         lb10.setForeground(new Color(204,0,0));
         lb10.setBounds(390,65,80,50);
-        list3.setBounds(390,105,90,100);
+        list3.setBounds(390,105,95,110);
         JButton btn5 = new JButton("Seçiniz");
         btn5.setBounds(490,125,90,30);
 
@@ -152,7 +167,7 @@ public class anamenu {
         btn3.setBackground(new Color(204,0,0));
         btn3.setForeground(Color.white);
         btn3.setFont(btn3.getFont().deriveFont(Font.BOLD));
-        btn3.setBounds(398,272,120,30);
+        btn3.setBounds(398,282,120,30);
         JLabel lb5 = new JLabel();
         lb5.setBounds(140,350, 300,60);
         JLabel lb6 = new JLabel();
@@ -171,7 +186,7 @@ public class anamenu {
                 list3.clearSelection();
               if(list.isSelectionEmpty() == true){
                   lb5.setVisible(false);
-
+                  lb19.setVisible(false);
                   lb12.setVisible(false);
                   btn6.setVisible(false);
                   ps.setVisible(false);
@@ -179,6 +194,12 @@ public class anamenu {
                   lb6.setVisible(false);
                   lb15.setVisible(false);
                   lb16.setVisible(false);
+                  lb18.setVisible(false);
+                  lb20.setVisible(false);
+                  String text6 = "";
+                  lb16.setText(text6);
+                  totalPrice = 0;
+
               }
                 if(list2.isSelectionEmpty() == true){
                     lb5.setVisible(false);
@@ -189,6 +210,11 @@ public class anamenu {
                     lb6.setVisible(false);
                     lb15.setVisible(false);
                     lb16.setVisible(false);
+                    lb18.setVisible(false);
+                    lb20.setVisible(false);
+                    String text3 = "";
+                    lb5.setText(text3);
+                    totalPrice = 0;
                 }
                 if(list3.isSelectionEmpty() == true){
                     lb5.setVisible(false);
@@ -199,6 +225,11 @@ public class anamenu {
                     lb6.setVisible(false);
                     lb15.setVisible(false);
                     lb16.setVisible(false);
+                    lb18.setVisible(false);
+                    lb20.setVisible(false);
+                    String text3 = "";
+                    lb5.setText(text3);
+                    totalPrice = 0;
 
                 }
 
@@ -208,27 +239,38 @@ public class anamenu {
 
 
 
-        lb11.setBounds(495,370,120,40);
+        lb11.setBounds(585,320,120,40);
         lb11.setFont(new Font(null,Font.CENTER_BASELINE,16));
-        lb11.setText("   SEPETİM");
+        lb11.setText("    SEPETİM");
         lb11.setBorder(BorderFactory.createLineBorder(Color.RED , 4,true));
-        lb12.setBounds(495,420,190,20);
+        lb12.setBounds(585,430,190,20);
         lb12.setFont(new Font("Display" ,Font.CENTER_BASELINE, 14));
-        lb13.setBounds(495,440 ,190,20);
+        lb13.setBounds(585,440 ,190,20);
         lb13.setFont(new Font("Display" ,Font.CENTER_BASELINE, 14));
-        lb14.setBounds(495,470,190,20);
+        lb14.setBounds(585,470,190,20);
         lb14.setFont(new Font("Display" ,Font.CENTER_BASELINE, 14));
-        lb15.setBounds(495,445,190,20);
+        lb15.setBounds(585,445,190,20);
         lb15.setFont(new Font("Display" ,Font.CENTER_BASELINE, 14));
-        lb16.setBounds(495,470,190,20);
+        lb16.setBounds(585,350,190,150);
         lb16.setFont(new Font("Display" ,Font.CENTER_BASELINE, 14));
+        lb18.setBounds(670,540, 200,20);
+        lb18.setFont(new Font("Arial" ,Font.BOLD, 15));
+        lb19.setBounds(585, 540 , 150 , 15);
+
+        lb19.setVisible(false);
+        lb19.setFont(new Font("Display" , Font.BOLD, 15));
+        lb19.setForeground(new Color(204,0,0));
+        lb20.setBounds(160 , 540 , 250 , 20);
+        lb20.setVisible(false);
+
+
         lb17.setBounds(495,500,200,20);
         lb17.setFont(new Font("Display" ,Font.BOLD, 14));
         lb17.setVisible(false);
 
 
 
-        btn6.setBounds(490,550,130,30);
+        btn6.setBounds(585,600,130,30);
         btn6.setBorder(BorderFactory.createLineBorder(Color.BLACK , 3,true));
         btn6.setForeground(Color.WHITE);
         btn6.setBackground(new Color(204,0,0));
@@ -241,8 +283,10 @@ public class anamenu {
                 ps.setVisible(true);
                 btn4.setVisible(true);
                 lb6.setVisible(true);
-                String text4 = "Ödeme için 4 haneli şifrenizi giriniz.";
+                String text4 = "Ödeme için şifrenizi giriniz.";
                 lb6.setText(text4);
+                lb20.setVisible(true);
+
 
 
 
@@ -258,17 +302,7 @@ public class anamenu {
                 if(list.getSelectedIndex() == 0 ){
                   int    x =JOptionPane.showOptionDialog(j,"Pizza 50 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
                 if(x == JOptionPane.YES_OPTION){
-                    String text6 = "Pizza ---> 50 TL ";
-                    lb12.setText(text6);
-                    String text3 = "";
-                    if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                    if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                    if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue() ;}
-                    text3 += " seçildi.";
-                    lb5.setText(text3);
-                    btn6.setVisible(true);
-                    lb5.setVisible(true);
-                    lb12.setVisible(true);
+                  AddOrder("Pizza" , 50);
 
 
 
@@ -276,64 +310,25 @@ public class anamenu {
                 if(list.getSelectedIndex() == 1){
                     int    x =    JOptionPane.showOptionDialog(j,"Hamburger 60 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
                     if(x == JOptionPane.YES_OPTION){
-                        String text6 = "Hamburger ---> 60 TL ";
-                        lb12.setText(text6);
-                        String text3 = ""  ;
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue() ;}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb12.setVisible(true);
+                       AddOrder("Hamburger"  ,60);
                         } }
                         if(list.getSelectedIndex() == 2){
                             int    x =   JOptionPane.showOptionDialog(j,"Döner 35 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
                             if(x == JOptionPane.YES_OPTION){
-                                String text6 = "Döner ---> 35 TL ";
-                                lb12.setText(text6);
-                                String text3 = ""  ;
-                                if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                                if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                                if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                                text3 += " seçildi.";
-                                lb5.setText(text3);
-                                btn6.setVisible(true);
-                                lb5.setVisible(true);
-                                lb12.setVisible(true);
+                                AddOrder("Döner" , 35);
                                 } }
                 if(list.getSelectedIndex() == 3){
 
                     int    x =     JOptionPane.showOptionDialog(j,"Salata 25 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
                     if(x == JOptionPane.YES_OPTION){
-                        String text6 = "Salata ---> 25 TL ";
-                        lb12.setText(text6);
-                        String text3 = ""  ;
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb12.setVisible(true);
+                       AddOrder("Salata" , 25);
                         } }
                 if(list.getSelectedIndex() == 4){
                     int    x =      JOptionPane.showOptionDialog(j,"Mantı 40 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , buttons[0]);
                     if(x == JOptionPane.YES_OPTION){
-                        String text6 = "Mantı --->  40 TL ";
-                        lb12.setText(text6);
-                        String text3 = ""  ;
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue() ;}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb12.setVisible(true);
-                     } }}
+                        AddOrder("Mantı" , 40);
+
+                    }}}
        });
 
         btn2.addActionListener(new ActionListener() {
@@ -342,77 +337,27 @@ public class anamenu {
                 if(list2.getSelectedIndex() == 0){
                    int y =  JOptionPane.showOptionDialog(j,"Sprite 10 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
                     if(y == JOptionPane.YES_OPTION){
-                        String text6 = "Sprite ---> 10 TL ";
-                        lb15.setText(text6);
-                        String text3 = "";
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb15.setVisible(true);
+                        AddOrder("Sprite" , 10);
                         } }
                 if(list2.getSelectedIndex() == 1){
                  int y =    JOptionPane.showOptionDialog(j,"Çay  7 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
                     if(y == JOptionPane.YES_OPTION){
-                        String text6 = "Çay ---> 7 TL ";
-                        lb15.setText(text6);
-                        String text3 = "";
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb15.setVisible(true);
+                       AddOrder("Çay"  , 7);
                         } }
                 if(list2.getSelectedIndex() == 2){
                  int y =    JOptionPane.showOptionDialog(j,"Su  4 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
                     if(y == JOptionPane.YES_OPTION){
-                        String text6 = "Su ---> 4 TL ";
-                        lb15.setText(text6);
-                        String text3 = ""  ;
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb15.setVisible(true);
+                       AddOrder("Su" , 4);
                         } }
                 if(list2.getSelectedIndex() == 3){
                 int y =    JOptionPane.showOptionDialog(j,"Ayran  5 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
                     if(y == JOptionPane.YES_OPTION){
-                        String text6 = "Ayran ---> 5 TL ";
-                        lb15.setText(text6);
-                        String text3 = ""  ;
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb15.setVisible(true);
+                       AddOrder("Ayran" , 5);
                         } }
                 if(list2.getSelectedIndex() == 4){
               int y =      JOptionPane.showOptionDialog(j,"Limonata 18 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
                     if(y == JOptionPane.YES_OPTION){
-                        String text6 = "Limonata ---> 18 TL ";
-                        lb15.setText(text6);
-                        String text3=  ""  ;
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb15.setVisible(true);
+                        AddOrder("Limonata" , 18);
                         } }
             }
         });
@@ -420,80 +365,30 @@ public class anamenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(list3.getSelectedIndex() == 0){
-                  int z =  JOptionPane.showOptionDialog(j,"Baklava 12 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
+                  int z =  JOptionPane.showOptionDialog(j,"Baklava 30 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
                     if(z == JOptionPane.YES_OPTION){
-                        String text6 = "Baklava ---> 12 TL ";
-                        lb16.setText(text6);
-                        String text3 = "" ;
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue() ;}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb16.setVisible(true);
+                        AddOrder("Baklava",30);
                         }    }
                 if(list3.getSelectedIndex() == 1){
                 int z =    JOptionPane.showOptionDialog(j,"Künefe  50 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
                     if(z == JOptionPane.YES_OPTION){
-                        String text6 = "Künefe ---> 50 TL ";
-                        lb16.setText(text6);
-                        String text3 = ""  ;
-                        if(list.getSelectedValue() != null){
-                            text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb16.setVisible(true);
+                        AddOrder("Künefe",50);
                        } }
                 if(list3.getSelectedIndex() == 2){
                     int z =      JOptionPane.showOptionDialog(j,"Dondurma 20 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
                     if(z == JOptionPane.YES_OPTION){
-                        String text6 = "Dondurma ---> 20 TL ";
-                        lb16.setText(text6);
-                        String text3 =""  ;
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb16.setVisible(true);
+                        AddOrder("Dondurma",20);
                        } }
                 if(list3.getSelectedIndex() == 3){
                     int z = JOptionPane.showOptionDialog(j,"Brownie 25 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
                     if(z == JOptionPane.YES_OPTION){
-                        String text6 = "Brownie ---> 25 TL ";
-                        lb16.setText(text6);
-                        String text3 = ""  ;
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb16.setVisible(true);
+                        AddOrder("Brownie",25);
                      } }
                 if(list3.getSelectedIndex() == 4){
                     int z =  JOptionPane.showOptionDialog(j,"Cheesecake 40 TL , sepetinize eklensin mi ?" , " " , JOptionPane.NO_OPTION , JOptionPane.PLAIN_MESSAGE , null , buttons , "evet");
                     if(z == JOptionPane.YES_OPTION){
-                        String text6 = "Cheesecake ---> 40 TL ";
-                        lb16.setText(text6);
-                        String text3 = ""  ;
-                        if(list.getSelectedValue() != null){ text3 += list.getSelectedValue() + " ";}
-                        if(list2.getSelectedValue() != null){ text3 += list2.getSelectedValue() + " ";}
-                        if(list3.getSelectedValue() != null){ text3 += list3.getSelectedValue();}
-                        text3 += " seçildi.";
-                        lb5.setText(text3);
-                        btn6.setVisible(true);
-                        lb5.setVisible(true);
-                        lb16.setVisible(true);
+                       AddOrder("Cheesecake" , 40,list.getSelectedValue(),list2.getSelectedValue(),list3.getSelectedValue());
+                        System.out.println(list3.getSelectedValue());
                        } }
             }
         });
@@ -512,7 +407,7 @@ public class anamenu {
             }
 
         });
-        list2.addMouseListener(new MouseAdapter() {
+         list2.addMouseListener(new MouseAdapter() {
             int lastSelectedIndex;
             public void mouseClicked(MouseEvent e){
                 int index = list2.locationToIndex(e.getPoint());
@@ -596,10 +491,12 @@ public class anamenu {
 
             public void actionPerformed(ActionEvent e) {
                 String password = new String(ps.getPassword());
-                if(ps.getPassword().length == 4){
-                    JOptionPane.showMessageDialog(j,"Onaylandı !", "Success",JOptionPane.INFORMATION_MESSAGE,icon); }
-                if(ps.getPassword().length != 4){
-                    JOptionPane.showMessageDialog(j,"Lütfen 4 haneli şifre girin. "  ,"Error" , JOptionPane.ERROR_MESSAGE);
+                if(userPassword.equals(password)){
+                    JOptionPane.showMessageDialog(j,"Onaylandı !", "Success",JOptionPane.INFORMATION_MESSAGE,icon);
+                System.exit(0);}
+                else{
+                    JOptionPane.showMessageDialog(j,"Şifre yanlış "  ,"Error" , JOptionPane.ERROR_MESSAGE);
+
                 }
 
             }
@@ -652,7 +549,8 @@ public class anamenu {
         j.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                p.show(j,e.getX(),e.getY());
+                if(e.getButton() != 1){
+                p.show(j,e.getX(),e.getY());}
             }
         });
 
@@ -671,7 +569,7 @@ public class anamenu {
        btn5.setText("Seçiniz");
 
 
-        j.setSize(900,700);
+        j.setSize(900,750);
         bar.add(m);
         bar.add(m1);
         bar.add(m2);
@@ -702,12 +600,84 @@ public class anamenu {
         j.add(lb14);
         j.add(lb15);
         j.add(lb16);
+        j.add(lb18);
+        j.add(lb19);
+        j.add(lb20);
         j.setLayout(null);
         j.setVisible(true);
 
 
 
     }
+    public void AddOrder(String order,int price){
+        if(maxvalue >= 7){
+         JOptionPane.showMessageDialog(null , "Maksimum 7 ürün ekleyebilirsiniz." , "Hata"  ,JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+
+
+            String text6 = order + " ----> " + price + " TL";
+            totalPrice += price;
+            lb16.setText("<html>" + lb16.getText() + "<br/>" + text6 + "<html/>");
+            String text3 = "";
+            if (list.getSelectedValue() != null) {
+                text3 += list.getSelectedValue() + " ";
+
+            }
+            if (list2.getSelectedValue() != null) {
+                text3 += list2.getSelectedValue() + " ";
+
+            }
+            if (list3.getSelectedValue() != null) {
+                text3 += list3.getSelectedValue();
+
+            }
+            text3 += " seçildi.";
+            lb5.setText(text3);
+            btn6.setVisible(true);
+            lb5.setVisible(true);
+            lb16.setVisible(true);
+            lb19.setVisible(true);
+            lb18.setVisible(true);
+            lb19.setText("TOPLAM = "  + totalPrice + " TL");
+            lb20.setText("Ödenecek tutar =  " + totalPrice + " TL");
+            lb20.setFont(new Font("Arial" , Font.BOLD, 15));
+
+            maxvalue++;
+
+        }
+    }
+    public void AddOrder(String order, int price, String a, String b, String c){
+        if(maxvalue >= 7 ){
+
+        }
+        else {
+            String text6 = order + " ----> " + price + " TL";
+            totalPrice += price;
+            lb16.setText("<html>" + lb16.getText() + "<br/>" + text6 + "<html/>");
+            String text3 = "";
+            if (a != null) {
+                text3 += a + " ";
+            }
+            if (b != null) {
+                text3 += b + " ";
+            }
+            if (c != null) {
+                text3 += c;
+            }
+            text3 += " seçildi.";
+            lb5.setText(text3);
+            btn6.setVisible(true);
+            lb5.setVisible(true);
+            lb16.setVisible(true);
+            lb18.setVisible(true);
+            lb19.setVisible(true);
+            lb19.setText("TOPLAM = "  + totalPrice + " TL ");
+            lb20.setText("Ödenecek tutar =  " + totalPrice + " TL");
+
+            maxvalue++;
+        }
+      }
 
 
 

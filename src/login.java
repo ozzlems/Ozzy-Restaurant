@@ -10,13 +10,14 @@ public class login implements ActionListener {
     JButton loginbutton = new JButton("Giriş");
     JButton resetbutton = new JButton("Reset");
     JPasswordField password = new JPasswordField();
-    JLabel attention = new JLabel("Şifre 4 haneli olmalıdır. ");
+    JLabel attention = new JLabel("Şifre 4 haneli olmalıdır. Şifrenizi unutmayınız. ");
     JTextField idfield = new JTextField();
     JPasswordField passwordfield = new JPasswordField();
     JLabel userid = new JLabel("İsim");
     JLabel userpass = new JLabel("Şifre");
     JLabel messagelb = new JLabel();
     JLabel messagelb2 = new JLabel();
+
     HashMap<String , String> logininfo = new HashMap<String  ,String>();
     login(HashMap<String,String> logininfoOriginal){
         logininfo = logininfoOriginal;
@@ -25,7 +26,7 @@ public class login implements ActionListener {
         messagelb.setBounds(150,80,250,50);
         idfield.setBounds(150,140,200,25);
         passwordfield.setBounds(150,190,200,25);
-        attention.setBounds(165,215,200,25);
+        attention.setBounds(120,228,290,25);
         attention.setFont(new Font("Arial", Font.PLAIN , 11));
         loginbutton.setBounds(120,270,100,25);
         loginbutton.addActionListener(this);
@@ -53,6 +54,19 @@ public class login implements ActionListener {
         frame.setIconImage(img.getImage());
 
 
+
+        frame.getContentPane().setBackground(new Color(245,240,255));
+        loginbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(password.getPassword().length == 4)
+                JOptionPane.showMessageDialog(null , "Lütfen şifrenizi unutmayınız! " );
+
+            }
+        });
+
+
+
     }
     ImageIcon img = new ImageIcon((Main.class.getResource("/tabakk.png")));
     @Override
@@ -68,12 +82,14 @@ public class login implements ActionListener {
                 messagelb2.setText("Lütfen 4 haneli şifre girin. ");
                 messagelb2.setForeground(new Color(204,0,0));
 
+
             }
             else{
                 messagelb2.setText("Giriş başarılı. ");
                 messagelb2.setForeground(new Color(0,102,0));
                 frame.dispose();
-                anamenu a = new anamenu(userid);
+                anamenu a = new anamenu(userid,password);
+
             }
         }
 
